@@ -30,20 +30,39 @@ namespace WordTestApp
         }
 
         string[][] wordsData = new string[100][];
-        public int[] questionNumbers;
-        public int qNumber,correct;
-        public string fileUrl2;
+        public int[] questionNumbers,missQNumbers;
+        public int qNumber,correct,allQuestionCount;
+        bool isNormalMode = true;
+        public string fileUrl2 = "";
+
+        List<int> missList = new List<int>();
+        List<int> deleteList = new List<int>();
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string fileUrl = FileSelect();
-            if(fileUrl!="")
+            if (fileUrl2 == "")
             {
-                wordsData = ReadCsv(fileUrl);
-                if (wordsData!=null)
+                //ファイル読み込み
+                string fileUrl = FileSelect();
+                if (fileUrl != "")
                 {
-                    this.fileUrl.Content = "準備完了：" + fileUrl;
-                    fileUrl2 = fileUrl;
-                    this.StartButton.IsEnabled = true;
+                    wordsData = ReadCsv(fileUrl);
+                    if (wordsData != null)
+                    {
+                        this.fileUrl.Content = "準備完了：" + fileUrl;
+                        fileUrl2 = fileUrl;
+                        this.TopButton.Content = "復習開始";
+                        this.TopButton.IsEnabled = false;
+                        this.StartButton.IsEnabled = true;
+                    }
+                }
+            }
+            else
+            {
+                //復習モード
+                if(missList.Count!=0)
+                {
+                    StartReStudyMode();
                 }
             }
         }
@@ -69,47 +88,117 @@ namespace WordTestApp
             this.questionArea.Content = wordsData[questionNumbers[0]][0];
             this.answerButton.IsEnabled = true;
             this.StartButton.IsEnabled = false;
+            isNormalMode = true;
             LogWrite("#################### " + dt.ToString() + " " + fileUrl2 + " ####################");
+        }
+
+        void StartReStudyMode()
+        {
+            allQuestionCount = missList.Count;
+
+            //シャッフルする配列
+            int[] ary = new int[allQuestionCount];
+            for (int i = 0; i < allQuestionCount; i++)
+            {
+                ary[i] = i;
+            }
+            //シャッフルする
+            missQNumbers = ary.OrderBy(i => Guid.NewGuid()).ToArray();
+
+            qNumber = 0;
+            this.answerArea.Text = "";
+            this.AnswerMsg.Text = "";
+            this.nowStatus.Content = "復習モード 1問目/" + allQuestionCount +"問中";
+            this.questionArea.Content = wordsData[missList[missQNumbers[0]]][0];
+            this.answerButton.IsEnabled = true;
+            this.StartButton.IsEnabled = false;
+            isNormalMode = false;
         }
 
         private void AnswerCheck(object sender, RoutedEventArgs e)
         {
-            string msg;
-            if(this.answerArea.Text==wordsData[questionNumbers[qNumber]][1])
+            if (isNormalMode)
             {
-                msg = "○ 正解。";
-                correct++;
+                //通常モード
+                string msg;
+                if (this.answerArea.Text == wordsData[questionNumbers[qNumber]][1])
+                {
+                    msg = "○ 正解。";
+                    correct++;
+                }
+                else
+                {
+                    msg = "☓ 誤答。";
+                    missList.Add(questionNumbers[qNumber]);
+                }
+                msg += "「" + wordsData[questionNumbers[qNumber]][0] + "」は" + wordsData[questionNumbers[qNumber]][1] + "(回答：" + this.answerArea.Text + ")";
+                this.AnswerMsg.Text = msg;
+                LogWrite(qNumber + "(" + questionNumbers[qNumber] + "):" + msg);
+                if (qNumber < 99)
+                {
+                    qNumber++;
+                    int q = qNumber + 1;
+                    this.nowStatus.Content = q + "問目　現在" + qNumber + "問中" + correct + "問正解";
+                    this.questionArea.Content = wordsData[questionNumbers[qNumber]][0];
+                    this.answerArea.Text = "";
+                }
+                else
+                {
+                    this.questionArea.Content = "終了！";
+                    this.nowStatus.Content = "最終結果：100問中" + correct + "問正解 / ミスゲージ：" + missList.Count;
+                    LogWrite("最終結果：100問中" + correct + "問正解\n");
+                    this.answerButton.IsEnabled = false;
+                    this.StartButton.IsEnabled = true;
+                    ReStudyModeCheck();
+                }
             }
             else
             {
-                msg = "☓ 誤答。";
-            }
-            msg += "「" + wordsData[questionNumbers[qNumber]][0] + "」は" + wordsData[questionNumbers[qNumber]][1] + "(回答：" + this.answerArea.Text + ")";
-            this.AnswerMsg.Text = msg;
-            //Debug.WriteLine(qNumber + "(" + questionNumbers[qNumber] + "):" + msg);
-            LogWrite(qNumber + "(" + questionNumbers[qNumber] + "):" + msg);
-            if (qNumber < 99)
-            {
-                qNumber++;
-                int q = qNumber + 1;
-                this.nowStatus.Content = q + "問目　現在" + qNumber + "問中" + correct + "問正解";
-                this.questionArea.Content = wordsData[questionNumbers[qNumber]][0];
-                this.answerArea.Text = "";
-            }
-            else
-            {
-                this.questionArea.Content = "終了！";
-                this.nowStatus.Content = "最終結果：100問中" + correct + "問正解";
-                LogWrite("最終結果：100問中" + correct + "問正解\n");
-                this.answerButton.IsEnabled = false;
-                this.StartButton.IsEnabled = true;
+                //復習モード
+                string msg;
+                if (this.answerArea.Text == wordsData[missList[missQNumbers[qNumber]]][1])
+                {
+                    msg = "○ 正解。";
+                    deleteList.Add(missList[missQNumbers[qNumber]]);
+                }
+                else
+                {
+                    msg = "☓ 誤答。";
+                    missList.Add(missList[missQNumbers[qNumber]]);
+                }
+                msg += "「" + wordsData[missList[missQNumbers[qNumber]]][0] + "」は" + wordsData[missList[missQNumbers[qNumber]]][1] + "(回答：" + this.answerArea.Text + ")";
+                this.AnswerMsg.Text = msg;
+                //LogWrite(qNumber + "(" + missQNumbers[qNumber] + "):" + msg);
+                if (qNumber < allQuestionCount - 1)
+                {
+                    qNumber++;
+                    int q = qNumber + 1;
+                    this.nowStatus.Content = "復習モード "+ q +"問目/" + allQuestionCount + "問中";
+                    this.questionArea.Content = wordsData[missList[missQNumbers[qNumber]]][0];
+                    this.answerArea.Text = "";
+                    //this.answerArea.Text = wordsData[missList[missQNumbers[qNumber]]][1]; //デバッグ用
+                }
+                else
+                {
+                    this.questionArea.Content = "終了！" + deleteList.Count + "ミスの削除に成功！";
+                    deleteList.Sort((a, b) => b - a);
+                    foreach (int i in deleteList)
+                    {
+                        missList.Remove(i);
+                    }
+                    deleteList.Clear();
+                    this.nowStatus.Content = "ミスゲージ：" + missList.Count;
+                    this.answerButton.IsEnabled = false;
+                    this.StartButton.IsEnabled = true;
+                    ReStudyModeCheck();
+                }
             }
         }
 
         static void LogWrite(string text)
         {
-            Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
-            StreamWriter writer = new StreamWriter(@"log.txt", true, sjisEnc);
+            Encoding utf8Enc = Encoding.GetEncoding("utf-8");
+            StreamWriter writer = new StreamWriter(@"log.txt", true, utf8Enc);
             writer.WriteLine(text);
             writer.Close();
         }
@@ -192,6 +281,18 @@ namespace WordTestApp
                 // ファイルを開くのに失敗したとき
                 MessageBox.Show(e.Message);
                 return null;
+            }
+        }
+
+        void ReStudyModeCheck()
+        {
+            if(missList.Count==0)
+            {
+                this.TopButton.IsEnabled = false;
+            }
+            else
+            {
+                this.TopButton.IsEnabled = true;
             }
         }
 /*
