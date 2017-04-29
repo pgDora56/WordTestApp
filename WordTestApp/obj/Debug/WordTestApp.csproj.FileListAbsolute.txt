@@ -1,0 +1,14 @@
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\bin\Debug\WordTestApp.exe.config
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\bin\Debug\WordTestApp.exe
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\bin\Debug\WordTestApp.pdb
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.csprojResolveAssemblyReference.cache
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\MainWindow.g.cs
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\App.g.cs
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp_MarkupCompile.cache
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp_MarkupCompile.lref
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\MainWindow.baml
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.g.resources
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.Properties.Resources.resources
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.csproj.GenerateResource.Cache
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.exe
+c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.pdb
