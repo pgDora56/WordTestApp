@@ -203,6 +203,19 @@ namespace WordTestApp
             writer.Close();
         }
 
+        private void OpenMissList(object sender, RoutedEventArgs e)
+        {
+            if (missList.Count == 0)
+            {
+                MessageBox.Show("ミスリストはありません");
+            }
+            else
+            {
+                MissList ml = new MissList(wordsData,missList);
+                ml.Show();
+            }
+        }
+
         static string FileSelect()
         {
             OpenFileDialog ofd = new OpenFileDialog();

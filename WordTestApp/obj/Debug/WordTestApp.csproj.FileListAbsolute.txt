@@ -12,3 +12,5 @@ c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj
 c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.csproj.GenerateResource.Cache
 c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.exe
 c:\users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.pdb
+C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\MissList.g.cs
+C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\MissList.baml
