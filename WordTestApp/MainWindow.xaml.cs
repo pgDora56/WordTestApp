@@ -27,11 +27,13 @@ namespace WordTestApp
         {
             InitializeComponent();
             this.AnswerMsg.Text = "";
+            three.IsEnabled = false;
         }
 
-        string[][] wordsData = new string[100][];
+       // string[][] wordsData = new string[100][];
+        public List<string[]> wordsList = new List<string[]>();
         public int[] questionNumbers,missQNumbers;
-        public int qNumber,correct,allQuestionCount;
+        public int qNumber,correct,allQuestionCount, wCount;
         bool isNormalMode = true;
         public string fileUrl2 = "";
 
@@ -46,14 +48,23 @@ namespace WordTestApp
                 string fileUrl = FileSelect();
                 if (fileUrl != "")
                 {
-                    wordsData = ReadCsv(fileUrl);
-                    if (wordsData != null)
+                    wordsList = ReadCsv(fileUrl);
+                    if (wordsList != null)
                     {
-                        this.fileUrl.Content = "準備完了：" + fileUrl;
-                        fileUrl2 = fileUrl;
-                        this.TopButton.Content = "復習開始";
-                        this.TopButton.IsEnabled = false;
-                        this.StartButton.IsEnabled = true;
+                        wCount = wordsList.Count();
+                        if (wCount != 0)
+                        {
+                            this.fileUrl.Content = "準備完了(" + wCount + "Words)：" + fileUrl;
+                            fileUrl2 = fileUrl;
+                            this.TopButton.Content = "復習開始";
+                            this.TopButton.IsEnabled = false;
+                            this.StartButton.IsEnabled = true;
+                            three.IsEnabled = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("単語データが空です！");
+                        }
                     }
                 }
             }
@@ -73,8 +84,8 @@ namespace WordTestApp
             qNumber = 0;
             correct = 0;
             //シャッフルする配列
-            int[] ary = new int[100];
-            for (int i = 0; i < 100; i++)
+            int[] ary = new int[wCount];
+            for (int i = 0; i < wCount; i++)
             {
                 ary[i] = i;
             }
@@ -85,7 +96,7 @@ namespace WordTestApp
             this.answerArea.Text = "";
             this.AnswerMsg.Text = "";
             this.nowStatus.Content = "1問目　現在0問中0問正解";
-            this.questionArea.Content = wordsData[questionNumbers[0]][0];
+            this.questionArea.Content = wordsList[questionNumbers[0]][0];
             this.answerButton.IsEnabled = true;
             this.StartButton.IsEnabled = false;
             isNormalMode = true;
@@ -109,7 +120,7 @@ namespace WordTestApp
             this.answerArea.Text = "";
             this.AnswerMsg.Text = "";
             this.nowStatus.Content = "復習モード 1問目/" + allQuestionCount +"問中";
-            this.questionArea.Content = wordsData[missList[missQNumbers[0]]][0];
+            this.questionArea.Content = wordsList[missList[missQNumbers[0]]][0];
             this.answerButton.IsEnabled = true;
             this.StartButton.IsEnabled = false;
             isNormalMode = false;
@@ -121,7 +132,7 @@ namespace WordTestApp
             {
                 //通常モード
                 string msg;
-                if (this.answerArea.Text == wordsData[questionNumbers[qNumber]][1])
+                if (this.answerArea.Text == wordsList[questionNumbers[qNumber]][1])
                 {
                     msg = "○ 正解。";
                     correct++;
@@ -131,22 +142,22 @@ namespace WordTestApp
                     msg = "☓ 誤答。";
                     missList.Add(questionNumbers[qNumber]);
                 }
-                msg += "「" + wordsData[questionNumbers[qNumber]][0] + "」は" + wordsData[questionNumbers[qNumber]][1] + "(回答：" + this.answerArea.Text + ")";
+                msg += "「" + wordsList[questionNumbers[qNumber]][0] + "」は" + wordsList[questionNumbers[qNumber]][1] + "(回答：" + this.answerArea.Text + ")";
                 this.AnswerMsg.Text = msg;
                 LogWrite(qNumber + "(" + questionNumbers[qNumber] + "):" + msg);
-                if (qNumber < 99)
+                if (qNumber < wCount-1)
                 {
                     qNumber++;
                     int q = qNumber + 1;
                     this.nowStatus.Content = q + "問目　現在" + qNumber + "問中" + correct + "問正解";
-                    this.questionArea.Content = wordsData[questionNumbers[qNumber]][0];
+                    this.questionArea.Content = wordsList[questionNumbers[qNumber]][0];
                     this.answerArea.Text = "";
                 }
                 else
                 {
                     this.questionArea.Content = "終了！";
-                    this.nowStatus.Content = "最終結果：100問中" + correct + "問正解 / ミスゲージ：" + missList.Count;
-                    LogWrite("最終結果：100問中" + correct + "問正解\n");
+                    this.nowStatus.Content = "最終結果："+ wCount + "問中" + correct + "問正解 / ミスゲージ：" + missList.Count;
+                    LogWrite("最終結果：" + wCount + "問中" + correct + "問正解\n");
                     this.answerButton.IsEnabled = false;
                     this.StartButton.IsEnabled = true;
                     ReStudyModeCheck();
@@ -156,7 +167,7 @@ namespace WordTestApp
             {
                 //復習モード
                 string msg;
-                if (this.answerArea.Text == wordsData[missList[missQNumbers[qNumber]]][1])
+                if (this.answerArea.Text == wordsList[missList[missQNumbers[qNumber]]][1])
                 {
                     msg = "○ 正解。";
                     deleteList.Add(missList[missQNumbers[qNumber]]);
@@ -166,7 +177,7 @@ namespace WordTestApp
                     msg = "☓ 誤答。";
                     missList.Add(missList[missQNumbers[qNumber]]);
                 }
-                msg += "「" + wordsData[missList[missQNumbers[qNumber]]][0] + "」は" + wordsData[missList[missQNumbers[qNumber]]][1] + "(回答：" + this.answerArea.Text + ")";
+                msg += "「" + wordsList[missList[missQNumbers[qNumber]]][0] + "」は" + wordsList[missList[missQNumbers[qNumber]]][1] + "(回答：" + this.answerArea.Text + ")";
                 this.AnswerMsg.Text = msg;
                 //LogWrite(qNumber + "(" + missQNumbers[qNumber] + "):" + msg);
                 if (qNumber < allQuestionCount - 1)
@@ -174,7 +185,7 @@ namespace WordTestApp
                     qNumber++;
                     int q = qNumber + 1;
                     this.nowStatus.Content = "復習モード "+ q +"問目/" + allQuestionCount + "問中";
-                    this.questionArea.Content = wordsData[missList[missQNumbers[qNumber]]][0];
+                    this.questionArea.Content = wordsList[missList[missQNumbers[qNumber]]][0];
                     this.answerArea.Text = "";
                     //this.answerArea.Text = wordsData[missList[missQNumbers[qNumber]]][1]; //デバッグ用
                 }
@@ -203,6 +214,12 @@ namespace WordTestApp
             writer.Close();
         }
 
+        private void three_Click(object sender, RoutedEventArgs e)
+        {
+            ThreeQ t = new ThreeQ(wordsList);
+            t.ShowDialog();
+        }
+
         private void OpenMissList(object sender, RoutedEventArgs e)
         {
             if (missList.Count == 0)
@@ -211,7 +228,7 @@ namespace WordTestApp
             }
             else
             {
-                MissList ml = new MissList(wordsData,missList);
+                MissList ml = new MissList(wordsList,missList);
                 ml.Show();
             }
         }
@@ -231,28 +248,29 @@ namespace WordTestApp
             }
         }
 
-        static string[][] ReadCsv(string fileUrl)
+        static List<string[]> ReadCsv(string fileUrl)
         {
             int count = 0;
-            string[][] wordsData = new string[100][];
-            for(int i = 0;i<100;i++)
+            List<string[]> wordsData = new List<string[]>();
+
+        /*    for(int i = 0;i<100;i++)
             {
                 wordsData[i] = new string[2];
             }
-
+            */
             try
             {
                 // csvファイルを開く
                 using (var sr = new System.IO.StreamReader(@fileUrl))
                 {
                     // ストリームの末尾まで繰り返す
-                    while (!sr.EndOfStream || count<100)
+                    while (!sr.EndOfStream)
                     {
                         // ファイルから一行読み込む
                         var line = sr.ReadLine();
                         // 読み込んだ一行をカンマ毎に分けて配列に格納する
                         var values = line.Split(',');
-                        wordsData[count] = values;
+                        wordsData.Add(values);
                         // 出力する
                         //foreach (var value in values)
                         //{
@@ -263,21 +281,15 @@ namespace WordTestApp
                     }
                 }
                 bool errorFlag = false;
-                if (wordsData.Length != 100)
+                for (int j = 0; j < wordsData.Count; j++)
                 {
-                    errorFlag = true;
-                }
-                else
-                {
-                    for (int j = 0; j < 100; j++)
+                    if(wordsData[j].Length != 2)
                     {
-                        if(wordsData[j].Length != 2)
-                        {
-                            errorFlag = true;
-                            break;
-                        }
-                    }
+                        errorFlag = true;
+                        break;
+                    }                    
                 }
+
 
                 if (errorFlag)
                 {
@@ -286,6 +298,7 @@ namespace WordTestApp
                 }
                 else
                 {
+                 
                     return wordsData;
                 }
             }

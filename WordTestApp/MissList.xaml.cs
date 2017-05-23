@@ -19,20 +19,20 @@ namespace WordTestApp
     /// </summary>
     public partial class MissList : Window
     {
-        string[][] wList = new string[100][];
+        List<string[]> wList = new List<string[]>();
         List<int> mList = new List<int>();
 
-        public MissList(string[][] wordsList, List<int> missList)
+        public MissList(List<string[]> wordsList, List<int> missList)
         {
             wList = wordsList;
             mList = missList;
             InitializeComponent();
         }
         
-        public List<string> Setting(string[][] w,List<int> mList)
+      /*  public List<string> Setting(string[][] w,List<int> mList)
         {
 
-        }
+        }*/
         
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
