@@ -100,6 +100,7 @@ namespace WordTestApp
             this.answerButton.IsEnabled = true;
             this.StartButton.IsEnabled = false;
             isNormalMode = true;
+            answerArea.Focus();
             LogWrite("#################### " + dt.ToString() + " " + fileUrl2 + " ####################");
         }
 

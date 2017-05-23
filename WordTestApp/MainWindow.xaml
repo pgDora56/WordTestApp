@@ -22,7 +22,7 @@
         <DockPanel HorizontalAlignment="Left" Height="27" LastChildFill="False" VerticalAlignment="Top" Width="930">
             <Menu Name="menu" DockPanel.Dock="Top" Background="White">
                 <MenuItem Header="_Menu">
-                    <MenuItem x:Name="ShowMiss" Header="ミスリスト表示(_W)" Click="OpenMissList" IsEnabled="False"></MenuItem>
+                    <MenuItem x:Name="ShowMiss" Header="ミスリスト表示(_W)" Click="OpenMissList"></MenuItem>
                     <MenuItem x:Name="three" Header="_3択モード(実験)" Click="three_Click"></MenuItem>
                 </MenuItem>
 

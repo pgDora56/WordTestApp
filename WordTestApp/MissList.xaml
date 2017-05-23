@@ -5,21 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordTestApp"
         mc:Ignorable="d"
-        Title="MissList" Height="300" Width="600">
+        Title="MissList" Height="487.156" Width="440.367">
     <Grid>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="189" VerticalAlignment="Top" Width="305">
-            <ListView.View>
-                <GridView>
-
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Japanese}" 
-                      Header="Japanese" Width="100"/>
-
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=English}" 
-                      Header="English" Width="100">
-                    </GridViewColumn>
-
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Button x:Name="button" Content="更新" HorizontalAlignment="Left" VerticalAlignment="Top" Width="317" RenderTransformOrigin="1.141,13.76" Margin="54,402,0,0" Height="38" Click="button_Click"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="393" VerticalAlignment="Top" Width="422" Margin="5,4,0,0"/>
     </Grid>
 </Window>

@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Microsoft.Win32;
+using System.Data;
+using System.IO;
+using System.Text.RegularExpressions;
+
 namespace WordTestApp
 {
     /// <summary>
@@ -28,15 +33,26 @@ namespace WordTestApp
             mList = missList;
             InitializeComponent();
         }
-        
-      /*  public List<string> Setting(string[][] w,List<int> mList)
-        {
 
-        }*/
-        
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Reload();
+        }
+
+        void Reload()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add();
+            dt.Columns.Add();
+            foreach(int n in mList)
+            {
+                DataRow dr = dt.NewRow();
+                dr[0] = wList[n][0];
+                dr[1] = wList[n][1];
+                dt.Rows.Add(dr);
+            }
+            this.dataGrid.ItemsSource = dt.DefaultView;
         }
     }
 }
