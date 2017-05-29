@@ -96,7 +96,7 @@ namespace WordTestApp
             this.answerArea.Text = "";
             this.AnswerMsg.Text = "";
             this.nowStatus.Content = "1問目　現在0問中0問正解";
-            this.questionArea.Content = wordsList[questionNumbers[0]][0];
+            this.questionArea.Text = wordsList[questionNumbers[0]][0];
             this.answerButton.IsEnabled = true;
             this.StartButton.IsEnabled = false;
             isNormalMode = true;
@@ -121,7 +121,7 @@ namespace WordTestApp
             this.answerArea.Text = "";
             this.AnswerMsg.Text = "";
             this.nowStatus.Content = "復習モード 1問目/" + allQuestionCount +"問中";
-            this.questionArea.Content = wordsList[missList[missQNumbers[0]]][0];
+            this.questionArea.Text = wordsList[missList[missQNumbers[0]]][0];
             this.answerButton.IsEnabled = true;
             this.StartButton.IsEnabled = false;
             isNormalMode = false;
@@ -151,12 +151,12 @@ namespace WordTestApp
                     qNumber++;
                     int q = qNumber + 1;
                     this.nowStatus.Content = q + "問目　現在" + qNumber + "問中" + correct + "問正解";
-                    this.questionArea.Content = wordsList[questionNumbers[qNumber]][0];
+                    this.questionArea.Text = wordsList[questionNumbers[qNumber]][0];
                     this.answerArea.Text = "";
                 }
                 else
                 {
-                    this.questionArea.Content = "終了！";
+                    this.questionArea.Text = "終了！";
                     this.nowStatus.Content = "最終結果："+ wCount + "問中" + correct + "問正解 / ミスゲージ：" + missList.Count;
                     LogWrite("最終結果：" + wCount + "問中" + correct + "問正解\n");
                     this.answerButton.IsEnabled = false;
@@ -186,13 +186,13 @@ namespace WordTestApp
                     qNumber++;
                     int q = qNumber + 1;
                     this.nowStatus.Content = "復習モード "+ q +"問目/" + allQuestionCount + "問中";
-                    this.questionArea.Content = wordsList[missList[missQNumbers[qNumber]]][0];
+                    this.questionArea.Text = wordsList[missList[missQNumbers[qNumber]]][0];
                     this.answerArea.Text = "";
                     //this.answerArea.Text = wordsData[missList[missQNumbers[qNumber]]][1]; //デバッグ用
                 }
                 else
                 {
-                    this.questionArea.Content = "終了！" + deleteList.Count + "ミスの削除に成功！";
+                    this.questionArea.Text = "終了！" + deleteList.Count + "ミスの削除に成功！";
                     deleteList.Sort((a, b) => b - a);
                     foreach (int i in deleteList)
                     {

@@ -5,19 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordTestApp"
         mc:Ignorable="d"
-        Title="WordsTester" Height="560.5" Width="920.8">
+        Title="WordsTester" Height="637.3" Width="920.8">
     <Grid Margin="0,0,-0.4,-19.6">
         <Label Content="単語てすたー" HorizontalAlignment="Left" Margin="17,38,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="24" FontWeight="Bold"/>
         <Button x:Name="TopButton" Content="データを開く(_O)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="17,84,0,0" FontFamily="FTT-TsukuGo R" Height="54" Click="Button_Click" FontSize="20" />
         <Label x:Name="fileUrl" Content="" HorizontalAlignment="Left" Margin="195,84,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="20" Height="54" VerticalContentAlignment="Center"/>
 
         <Button x:Name="StartButton" Content="開始(_S)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="17,146,0,0" FontFamily="FTT-TsukuGo R" Height="54" Click="StartTest" IsEnabled="False" FontSize="20" />
-        <Label x:Name="questionArea" Content="" HorizontalAlignment="Left" Margin="35,209,0,0" Width="870" Height="100" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="36"/>
+        <TextBlock x:Name="questionArea" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" Margin="35,209,0,0" Width="870" Height="100" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="36"/>
+        
         <TextBox x:Name="answerArea" HorizontalAlignment="Left" Margin="110,334,0,0" TextWrapping="Wrap" Height="50" Width="700" FontFamily="Adobe Devanagari" FontSize="36" VerticalAlignment="Top"/>
         <Label Content="Answer:" FontSize="24" HorizontalAlignment="Left" Margin="11,338,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R"/>
         <Button x:Name="answerButton" Content="解答" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" Margin="815,334,0,0" FontFamily="FTT-TsukuGo R" Height="50" Click="AnswerCheck" IsEnabled="False" IsDefault="True" RenderTransformOrigin="3.173,0.676" />
         <Label Content="結果:" FontSize="24" HorizontalAlignment="Left" Margin="35,401,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R"/>
-        <TextBox x:Name="AnswerMsg" FontSize="36" HorizontalAlignment="Left" Margin="110,401,0,0" Height="80" Width="784" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" TextWrapping="Wrap" IsReadOnly="True"/>
+        <TextBox x:Name="AnswerMsg" FontSize="36" HorizontalAlignment="Left" Margin="110,401,0,0" Height="160" Width="784" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" TextWrapping="Wrap" IsReadOnly="True"/>
         <Label x:Name="nowStatus" Content="" HorizontalAlignment="Left" Margin="195,146,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="20" Height="54" VerticalContentAlignment="Center"/>
         <DockPanel HorizontalAlignment="Left" Height="27" LastChildFill="False" VerticalAlignment="Top" Width="930">
             <Menu Name="menu" DockPanel.Dock="Top" Background="White">
@@ -28,6 +29,6 @@
 
             </Menu>
         </DockPanel>
-        <Label Content="Made By Dora" HorizontalAlignment="Left" Margin="786,494,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="14"/>
+        <Label Content="Made By Dora" HorizontalAlignment="Left" Margin="786,566,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="14"/>
     </Grid>
 </Window>
