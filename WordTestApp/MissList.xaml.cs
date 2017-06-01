@@ -53,6 +53,7 @@ namespace WordTestApp
                 dt.Rows.Add(dr);
             }
             this.dataGrid.ItemsSource = dt.DefaultView;
+            
         }
     }
 }

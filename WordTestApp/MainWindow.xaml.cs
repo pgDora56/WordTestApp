@@ -28,6 +28,7 @@ namespace WordTestApp
             InitializeComponent();
             this.AnswerMsg.Text = "";
             three.IsEnabled = false;
+            other.IsEnabled = false;
         }
 
        // string[][] wordsData = new string[100][];
@@ -56,9 +57,10 @@ namespace WordTestApp
                         {
                             this.fileUrl.Content = "準備完了(" + wCount + "Words)：" + fileUrl;
                             fileUrl2 = fileUrl;
-                            this.TopButton.Content = "復習開始";
+                            this.TopButton.Content = "復習開始(_R)";
                             this.TopButton.IsEnabled = false;
                             this.StartButton.IsEnabled = true;
+                            other.IsEnabled = true;
                             three.IsEnabled = true;
                         }
                         else
@@ -163,6 +165,7 @@ namespace WordTestApp
                     this.StartButton.IsEnabled = true;
                     ReStudyModeCheck();
                 }
+                this.answerArea.Text = "";
             }
             else
             {
@@ -187,7 +190,6 @@ namespace WordTestApp
                     int q = qNumber + 1;
                     this.nowStatus.Content = "復習モード "+ q +"問目/" + allQuestionCount + "問中";
                     this.questionArea.Text = wordsList[missList[missQNumbers[qNumber]]][0];
-                    this.answerArea.Text = "";
                     //this.answerArea.Text = wordsData[missList[missQNumbers[qNumber]]][1]; //デバッグ用
                 }
                 else
@@ -201,9 +203,10 @@ namespace WordTestApp
                     deleteList.Clear();
                     this.nowStatus.Content = "ミスゲージ：" + missList.Count;
                     this.answerButton.IsEnabled = false;
-                    this.StartButton.IsEnabled = true;
+                    this.StartButton.IsEnabled = true;                    
                     ReStudyModeCheck();
                 }
+                this.answerArea.Text = "";
             }
         }
 
@@ -219,6 +222,43 @@ namespace WordTestApp
         {
             ThreeQ t = new ThreeQ(wordsList);
             t.ShowDialog();
+        }
+
+        private void new_Click(object sender, RoutedEventArgs e)
+        {
+            //ファイル読み込み
+            string fileUrl = FileSelect();
+            if (fileUrl != "")
+            {
+                List<string[]> wl = ReadCsv(fileUrl);
+                if (wl != null)
+                {
+                    int wC = wl.Count();
+                    if (wC != 0)
+                    {
+                        wCount = wC;
+                        wordsList = wl;
+                        this.fileUrl.Content = "準備完了(" + wCount + "Words)：" + fileUrl;
+                        fileUrl2 = fileUrl;
+                        this.TopButton.Content = "復習開始(_R)";
+                        this.TopButton.IsEnabled = false;
+                        this.StartButton.IsEnabled = true;
+                        three.IsEnabled = true;
+                        nowStatus.Content = "";
+                        questionArea.Text = "";
+                        answerArea.Text = "";
+                        AnswerMsg.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("単語データが空です！");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("データがありません！");
+                }
+            }
         }
 
         private void OpenMissList(object sender, RoutedEventArgs e)

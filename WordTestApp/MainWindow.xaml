@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordTestApp"
         mc:Ignorable="d"
-        Title="WordsTester" Height="637.3" Width="920.8">
-    <Grid Margin="0,0,-0.4,-19.6">
-        <Label Content="単語てすたー" HorizontalAlignment="Left" Margin="17,38,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="24" FontWeight="Bold"/>
+        Title="WordsTestApp" Height="637.3" Width="920.8">
+    <Grid>
+        <Label Content="WordTestApp" HorizontalAlignment="Left" Margin="17,38,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="24" FontWeight="Bold"/>
         <Button x:Name="TopButton" Content="データを開く(_O)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="17,84,0,0" FontFamily="FTT-TsukuGo R" Height="54" Click="Button_Click" FontSize="20" />
         <Label x:Name="fileUrl" Content="" HorizontalAlignment="Left" Margin="195,84,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="20" Height="54" VerticalContentAlignment="Center"/>
 
@@ -25,6 +25,7 @@
                 <MenuItem Header="_Menu">
                     <MenuItem x:Name="ShowMiss" Header="ミスリスト表示(_W)" Click="OpenMissList"></MenuItem>
                     <MenuItem x:Name="three" Header="_3択モード(実験)" Click="three_Click"></MenuItem>
+                    <MenuItem x:Name="other" Header="他のファイルを読み込む(_O)" Click="new_Click"></MenuItem>
                 </MenuItem>
 
             </Menu>

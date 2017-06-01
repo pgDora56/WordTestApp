@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="MissList" Height="487.156" Width="440.367">
     <Grid>
-        <Button x:Name="button" Content="更新" HorizontalAlignment="Left" VerticalAlignment="Top" Width="317" RenderTransformOrigin="1.141,13.76" Margin="54,402,0,0" Height="38" Click="button_Click"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="393" VerticalAlignment="Top" Width="422" Margin="5,4,0,0"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30px" />
+        </Grid.RowDefinitions>
+        <Button x:Name="button" Content="更新" Grid.Row="1" Click="button_Click"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="0"/>
     </Grid>
 </Window>
