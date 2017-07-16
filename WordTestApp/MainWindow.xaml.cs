@@ -278,7 +278,7 @@ namespace WordTestApp
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "単語データを読み込む";
-            ofd.Filter = "CSVファイル（カンマ区切り）(*.csv)|*.csv";
+            ofd.Filter = "対応ファイル(*.csv;*.tsv)|*.csv;*.tsv";
             if (ofd.ShowDialog() == true)
             {
                 return ofd.FileName;
@@ -292,6 +292,7 @@ namespace WordTestApp
         static List<string[]> ReadCsv(string fileUrl)
         {
             int count = 0;
+            bool isTSV = false;
             List<string[]> wordsData = new List<string[]>();
 
         /*    for(int i = 0;i<100;i++)
@@ -301,7 +302,22 @@ namespace WordTestApp
             */
             try
             {
-                // csvファイルを開く
+                var filenames = fileUrl.Split('.');
+                switch(filenames[filenames.Length - 1])
+                {
+                    case "tsv":
+                    case "TSV":
+                    case "tSV":
+                    case "TsV":
+                    case "TSv":
+                    case "Tsv":
+                    case "tSv":
+                    case "tsV":
+                        isTSV = true;
+                        break;
+                }
+
+                // CSV or TSVファイルを開く
                 using (var sr = new System.IO.StreamReader(@fileUrl))
                 {
                     // ストリームの末尾まで繰り返す
@@ -309,16 +325,18 @@ namespace WordTestApp
                     {
                         // ファイルから一行読み込む
                         var line = sr.ReadLine();
-                        // 読み込んだ一行をカンマ毎に分けて配列に格納する
-                        var values = line.Split(',');
-                        var wDataAdd = values.Select(elem => elem.Replace("/c", ",")).ToArray();
-                        wordsData.Add(wDataAdd);
-                        // 出力する
-                        //foreach (var value in values)
-                        //{
-                        //    System.Console.Write("{0} ", value);
-                        //}
-                        //System.Console.WriteLine();
+                        // 読み込んだ一行をタブまたはカンマ毎に分けて配列に格納する
+                        if (isTSV)
+                        {
+                            var values = line.Split('\t');
+                            wordsData.Add(values);
+                        }
+                        else
+                        {
+                            var values = line.Split(',');
+                            var wDataAdd = values.Select(elem => elem.Replace("/c", ",")).ToArray();
+                            wordsData.Add(wDataAdd);
+                        }
                         count++;
                     }
                 }
