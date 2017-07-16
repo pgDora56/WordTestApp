@@ -7,13 +7,24 @@
         mc:Ignorable="d"
         Title="3択モード" Height="370.479" Width="566.301" KeyDown="Window_KeyDown">
     <Grid>
-        <Button x:Name="startButton" Content="_Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" Margin="10,10,0,0" Click="startButton_Click" FontSize="18"/>
-        <TextBlock x:Name="qArea" HorizontalAlignment="Left" Margin="19,50,0,0" TextWrapping="Wrap" Text="賛同" VerticalAlignment="Top" Height="78" Width="521" FontSize="36" FontFamily="FTT-TsukuGo R"/>
-        <Button x:Name="one" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="489" Margin="51,148,0,0" Height="56" FontFamily="FTT-TsukuGo R" FontSize="36" Click="Answer_Click"/>
-        <Button x:Name="two" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="489" Margin="51,209,0,0" Height="56" FontFamily="FTT-TsukuGo R" FontSize="36" Click="Answer_Click"/>
-        <Button x:Name="three" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="489" Margin="51,270,0,0" Height="57" FontFamily="FTT-TsukuGo R" FontSize="36" Click="Answer_Click"/>
-        <Label x:Name="label" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,148,0,0" FontSize="24" Height="53" VerticalContentAlignment="Center"/>
-        <Label x:Name="label_Copy" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,209,0,0" FontSize="24" Height="53" VerticalContentAlignment="Center"/>
-        <Label x:Name="label_Copy1" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,270,0,0" FontSize="24" Height="53" VerticalContentAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="startButton" Content="_Start" Margin="10,5,10,5" Click="startButton_Click" FontSize="18" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="qArea" Margin="20,10,10,10" TextWrapping="Wrap" Text="賛同" FontSize="36" FontFamily="FTT-TsukuGo R" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="one" Content="Start" Margin="5,5,5,5" FontFamily="FTT-TsukuGo R" FontSize="36" Click="Answer_Click" Grid.Row="2" Grid.Column="1"/>
+        <Button x:Name="two" Content="Start" Margin="5,5,5,5" FontFamily="FTT-TsukuGo R" FontSize="36" Click="Answer_Click" Grid.Row="3" Grid.Column="1"/>
+        <Button x:Name="three" Content="Start" Margin="5,5,5,5" FontFamily="FTT-TsukuGo R" FontSize="36" Click="Answer_Click" Grid.Row="4" Grid.Column="1"/>
+        <Label x:Name="label" Content="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" VerticalContentAlignment="Center" Grid.Row="2"/>
+        <Label x:Name="label_Copy" Content="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" VerticalContentAlignment="Center" Grid.Row="3"/>
+        <Label x:Name="label_Copy1" Content="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" VerticalContentAlignment="Center" Grid.Row="4"/>
     </Grid>
 </Window>

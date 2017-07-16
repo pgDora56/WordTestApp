@@ -5,31 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordTestApp"
         mc:Ignorable="d"
-        Title="WordsTestApp" Height="637.3" Width="920.8">
+        Title="WordsTestApp" Height="660" Width="920">
     <Grid>
-        <Label Content="WordTestApp" HorizontalAlignment="Left" Margin="17,38,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="24" FontWeight="Bold"/>
-        <Button x:Name="TopButton" Content="データを開く(_O)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="17,84,0,0" FontFamily="FTT-TsukuGo R" Height="54" Click="Button_Click" FontSize="20" />
-        <Label x:Name="fileUrl" Content="" HorizontalAlignment="Left" Margin="195,84,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="20" Height="54" VerticalContentAlignment="Center"/>
-
-        <Button x:Name="StartButton" Content="開始(_S)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="17,146,0,0" FontFamily="FTT-TsukuGo R" Height="54" Click="StartTest" IsEnabled="False" FontSize="20" />
-        <TextBlock x:Name="questionArea" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" Margin="35,209,0,0" Width="870" Height="100" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="36"/>
-        
-        <TextBox x:Name="answerArea" HorizontalAlignment="Left" Margin="110,334,0,0" TextWrapping="Wrap" Height="50" Width="700" FontFamily="Adobe Devanagari" FontSize="36" VerticalAlignment="Top"/>
-        <Label Content="Answer:" FontSize="24" HorizontalAlignment="Left" Margin="11,338,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R"/>
-        <Button x:Name="answerButton" Content="解答" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" Margin="815,334,0,0" FontFamily="FTT-TsukuGo R" Height="50" Click="AnswerCheck" IsEnabled="False" IsDefault="True" RenderTransformOrigin="3.173,0.676" />
-        <Label Content="結果:" FontSize="24" HorizontalAlignment="Left" Margin="35,401,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R"/>
-        <TextBox x:Name="AnswerMsg" FontSize="36" HorizontalAlignment="Left" Margin="110,401,0,0" Height="160" Width="784" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" TextWrapping="Wrap" IsReadOnly="True"/>
-        <Label x:Name="nowStatus" Content="" HorizontalAlignment="Left" Margin="195,146,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="20" Height="54" VerticalContentAlignment="Center"/>
-        <DockPanel HorizontalAlignment="Left" Height="27" LastChildFill="False" VerticalAlignment="Top" Width="930">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />            
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="80" />
+        </Grid.ColumnDefinitions>
+        <DockPanel HorizontalAlignment="Left" LastChildFill="False" Grid.ColumnSpan="3" Grid.Row="0">
             <Menu Name="menu" DockPanel.Dock="Top" Background="White">
                 <MenuItem Header="_Menu">
                     <MenuItem x:Name="ShowMiss" Header="ミスリスト表示(_W)" Click="OpenMissList"></MenuItem>
                     <MenuItem x:Name="three" Header="_3択モード(実験)" Click="three_Click"></MenuItem>
                     <MenuItem x:Name="other" Header="他のファイルを読み込む(_O)" Click="new_Click"></MenuItem>
                 </MenuItem>
-
             </Menu>
         </DockPanel>
-        <Label Content="Made By Dora" HorizontalAlignment="Left" Margin="786,566,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="14"/>
+        <Label Content="WordTestApp" Margin="10,10,0,0" FontFamily="FTT-TsukuGo R" FontSize="32" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1"/>
+        <Button x:Name="TopButton" Content="データを開く(_O)" Margin="5,5,5,5" FontFamily="FTT-TsukuGo R" Click="Button_Click" FontSize="20" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" />
+        <Label x:Name="fileUrl" Content="" HorizontalAlignment="Left" Margin="5,0,0,0" FontFamily="FTT-TsukuGo R" FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"/>
+
+        <Button x:Name="StartButton" Content="開始(_S)" Margin="5,5,5,5" FontFamily="FTT-TsukuGo R" Click="StartTest" IsEnabled="False" FontSize="20" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
+        <TextBlock x:Name="questionArea" TextWrapping="Wrap" Text="" Margin="50,10,10,0" FontFamily="FTT-TsukuGo R" FontSize="36" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"/>
+        
+        <TextBox x:Name="answerArea" Margin="0,0,0,0" TextWrapping="Wrap" FontFamily="Adobe Devanagari" FontSize="36" VerticalAlignment="Top" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Content="Answer:" FontSize="24" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="FTT-TsukuGo R" Grid.Row="5" Grid.Column="0" />
+        <Button x:Name="answerButton" Content="解答" FontSize="24" Margin="5,0,5,0" FontFamily="FTT-TsukuGo R"  Click="AnswerCheck" IsEnabled="False" IsDefault="True" Grid.Row="5" Grid.Column="3" />
+        <Label Content="結果:" FontSize="24" HorizontalAlignment="Right" Margin="0,5,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" Grid.Row="6"/>
+        <TextBox x:Name="AnswerMsg" FontSize="36" Margin="0,5,10,0" FontFamily="FTT-TsukuGo R" TextWrapping="Wrap" IsReadOnly="True" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label x:Name="nowStatus" Content="" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="2"/>
+
+        <Label Content="Made By Dora" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" FontFamily="FTT-TsukuGo R" FontSize="14" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
