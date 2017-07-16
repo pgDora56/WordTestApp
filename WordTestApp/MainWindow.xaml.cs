@@ -311,7 +311,8 @@ namespace WordTestApp
                         var line = sr.ReadLine();
                         // 読み込んだ一行をカンマ毎に分けて配列に格納する
                         var values = line.Split(',');
-                        wordsData.Add(values);
+                        var wDataAdd = values.Select(elem => elem.Replace("/c", ",")).ToArray();
+                        wordsData.Add(wDataAdd);
                         // 出力する
                         //foreach (var value in values)
                         //{
