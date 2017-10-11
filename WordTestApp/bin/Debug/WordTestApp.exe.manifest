@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WordTestApp.exe" size="164296">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WordTestApp.exe" size="163784">
       <assemblyIdentity name="WordTestApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xIgOzkYE7K8H9H55N5KGvNQm4dg2aRxdL7bEiz8Oquo=</dsig:DigestValue>
+        <dsig:DigestValue>Yh7vUlbtYtSnzl9JcnSCjWfBvTsmydUCFJNUNo+Pumw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

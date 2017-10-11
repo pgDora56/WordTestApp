@@ -21,3 +21,27 @@ C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\bin
 C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\bin\Debug\WordTestApp.application
 C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.exe.manifest
 C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.application
+D:\GitHub\WordTestApp\WordTestApp\bin\Debug\WordTestApp.exe.config
+D:\GitHub\WordTestApp\WordTestApp\bin\Debug\WordTestApp.exe.manifest
+D:\GitHub\WordTestApp\WordTestApp\bin\Debug\WordTestApp.application
+D:\GitHub\WordTestApp\WordTestApp\bin\Debug\WordTestApp.exe
+D:\GitHub\WordTestApp\WordTestApp\bin\Debug\WordTestApp.pdb
+D:\GitHub\WordTestApp\WordTestApp\bin\Debug\System.ValueTuple.dll
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.csprojResolveAssemblyReference.cache
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\MainWindow.g.cs
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\MissList.g.cs
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\ThreeQ.g.cs
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\App.g.cs
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp_MarkupCompile.cache
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp_MarkupCompile.lref
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\MainWindow.baml
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\MissList.baml
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\ThreeQ.baml
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.g.resources
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.Properties.Resources.resources
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.csproj.GenerateResource.Cache
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.csproj.CoreCompileInputs.cache
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.exe.manifest
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.application
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.exe
+D:\GitHub\WordTestApp\WordTestApp\obj\Debug\WordTestApp.pdb
