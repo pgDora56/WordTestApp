@@ -17,3 +17,7 @@ C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj
 C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\ThreeQ.g.cs
 C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\ThreeQ.baml
 C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\bin\Debug\System.ValueTuple.dll
+C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\bin\Debug\WordTestApp.exe.manifest
+C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\bin\Debug\WordTestApp.application
+C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.exe.manifest
+C:\Users\admin\documents\visual studio 2017\Projects\WordTestApp\WordTestApp\obj\Debug\WordTestApp.application
