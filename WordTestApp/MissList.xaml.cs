@@ -11,8 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-using Microsoft.Win32;
 using System.Data;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -37,23 +35,38 @@ namespace WordTestApp
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Reload();
+            //更新
+            Reloading();
         }
 
-        void Reload()
+        void Reloading()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add();
-            dt.Columns.Add();
-            foreach(int n in mList)
+            List<MissWord> ml = new List<MissWord>();
+            var mList2 = mList.OrderBy(n => n);
+            int nowJudge = -1;
+            foreach(int n in mList2)
             {
-                DataRow dr = dt.NewRow();
-                dr[0] = wList[n][0];
-                dr[1] = wList[n][1];
-                dt.Rows.Add(dr);
+                if (nowJudge == n) ml[ml.Count - 1].WrongLevel++;
+                else
+                {
+                    ml.Add(new MissWord(wList[n][0], wList[n][1]));
+                    nowJudge = n;
+                }
             }
-            this.dataGrid.ItemsSource = dt.DefaultView;
-            
+            this.dataGrid.ItemsSource = ml;
+        }
+    }
+
+    class MissWord
+    {
+        public string Question { get; }
+        public string Answer { get; }
+        public int WrongLevel { get; set; }
+        public MissWord(string q,string a)
+        {
+            Question = q;
+            Answer = a;
+            WrongLevel = 1;
         }
     }
 }

@@ -12,6 +12,6 @@
             <RowDefinition Height="30px" />
         </Grid.RowDefinitions>
         <Button x:Name="button" Content="更新" Grid.Row="1" Click="button_Click" FontFamily="Meiryo UI"/>
-        <DataGrid x:Name="dataGrid" Grid.Row="0"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="0" />
     </Grid>
 </Window>

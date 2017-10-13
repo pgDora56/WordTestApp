@@ -31,11 +31,10 @@ namespace WordTestApp
             other.IsEnabled = false;
         }
 
-       // string[][] wordsData = new string[100][];
-        public List<string[]> wordsList = new List<string[]>();
-        public int[] questionNumbers,missQNumbers;
-        public int qNumber,correct,allQuestionCount, wCount;
-        bool isNormalMode = true;
+        public List<string[]> wordsList = new List<string[]>(); // すべての単語
+        public int[] questionNumbers,missQNumbers; // 番号の出題順/間違えた問題番号
+        public int qNumber,correct,allQuestionCount, wCount; // 現在出題している番号/正解数/出題数/誤答数
+        bool isNormalMode = true; // trueなら通常モード、falseなら復習モード
         public string fileUrl2 = "";
 
         List<int> missList = new List<int>();
@@ -295,30 +294,16 @@ namespace WordTestApp
             bool isTSV = false;
             List<string[]> wordsData = new List<string[]>();
 
-        /*    for(int i = 0;i<100;i++)
-            {
-                wordsData[i] = new string[2];
-            }
-            */
             try
             {
                 var filenames = fileUrl.Split('.');
-                switch(filenames[filenames.Length - 1])
+                if(System.Text.RegularExpressions.Regex.IsMatch(filenames[filenames.Length - 1],@"[tT][sS][vV]"))
                 {
-                    case "tsv":
-                    case "TSV":
-                    case "tSV":
-                    case "TsV":
-                    case "TSv":
-                    case "Tsv":
-                    case "tSv":
-                    case "tsV":
-                        isTSV = true;
-                        break;
+                    isTSV = true;
                 }
 
                 // CSV or TSVファイルを開く
-                using (var sr = new System.IO.StreamReader(@fileUrl))
+                using (var sr = new StreamReader(@fileUrl))
                 {
                     // ストリームの末尾まで繰り返す
                     while (!sr.EndOfStream)
@@ -353,7 +338,7 @@ namespace WordTestApp
 
                 if (errorFlag)
                 {
-                    MessageBox.Show("CSVファイルが無効です。");
+                    MessageBox.Show("データファイルが無効です。");
                     return null;
                 }
                 else
@@ -362,7 +347,7 @@ namespace WordTestApp
                     return wordsData;
                 }
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 // ファイルを開くのに失敗したとき
                 MessageBox.Show(e.Message);
@@ -381,14 +366,5 @@ namespace WordTestApp
                 this.TopButton.IsEnabled = true;
             }
         }
-/*
-        private void AnswerAreaKeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.Key == Key.Enter)
-            {
-                AnswerCheck(this.answerButton);
-            }
-        }
-        */
     }
 }
