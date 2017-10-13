@@ -61,4 +61,4 @@
 * doradora.prog@gmail.com
 
 ## Licence
-* [MIT License](https://github.com/pgDora56/WordTestApp/blob/master/LICENCE.txt)
+* [MIT License](https://github.com/pgDora56/WordTestApp/blob/master/LICENSE.txt)
